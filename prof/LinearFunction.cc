@@ -16,9 +16,9 @@ LinearFunction::~LinearFunction() {
 }
 
 double LinearFunction::getValue(Point const & x) const {
-	double result(0);
+	double result(_cst);
 	for (auto const & term : _linearTerms)
-		result *= x[term.first] * term.second;
+		result += x[term.first] * term.second;
 	return result;
 }
 void LinearFunction::getGradient(Point const & x, Point & result) const {
@@ -46,7 +46,7 @@ void LinearFunction::clear() {
 
 void LinearFunction::print(std::ostream & stream) const {
 	if (std::abs(_cst) > 1e-10)
-		stream << _cst;
+	stream << _cst;
 
 	for (auto const & term : _linearTerms) {
 		if (PrintCoeff(stream, term.second)) {
