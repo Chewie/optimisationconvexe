@@ -44,7 +44,10 @@ void QuadraticFunction::print(std::ostream& stream = std::cout) const {
     for (auto const & term : _bilinearTerms) {
         if (PrintCoeff(stream, term.second)) {
             stream << getName(term.first.first);
-            stream << getName(term.first.second);
+            if (term.first.first == term.first.second)
+                stream << "²";
+            else
+                stream << getName(term.first.second);
         }
     }
 }
